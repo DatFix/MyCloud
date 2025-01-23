@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Flex, Progress, Upload, Button } from 'antd';
-import { DeleteOutlined, FileTextTwoTone, SendOutlined } from '@ant-design/icons';
-import Image from '../../assets/images/image.png';
+import { CloudDownloadOutlined, DeleteOutlined, FileTextTwoTone, SendOutlined } from '@ant-design/icons';
+import Img from '../../assets/images/image.png';
 import Folder from '../../assets/images/folder.png';
 import Others from '../../assets/images/orthers.png';
 import Document from '../../assets/images/document.png';
@@ -15,6 +15,7 @@ import useFetchFiles from '../../hooks/useFetchFiles';
 import fetchDriveStorage from '../../hooks/useFetchDriveStorage';
 import useDeleteItem from '../../hooks/useDeleteNote';
 import { message } from 'antd';
+import { Image } from 'antd';
 
 
 
@@ -26,6 +27,7 @@ const Home = () => {
   const { fetchFilesData, files } = useFetchFiles();
   const [messageContent, setMessageContent] = useState('');
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
   const [storage, setStorage] = useState({
     limit: 0,
     usage: 0,
@@ -112,6 +114,24 @@ const Home = () => {
     }
   };
 
+
+  const handleDownload = async (fileId: string) => {
+    try {
+      setIsDownloading(true);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = `https://drive.google.com/uc?export=download&id=${fileId}`;
+      downloadLink.setAttribute('download', '');
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    } catch (error) {
+      console.error('Download error:', error);
+      message.error('Download failed');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <div className="home-container">
       <h2>My Cloud Storage</h2>
@@ -124,7 +144,7 @@ const Home = () => {
         <div className="statistic_card">
           <p className="card_title">Images</p>
           <div className="card_content">
-            <img src={Image} alt="Statistics" />
+            <img src={Img} alt="Statistics" />
             <p className="statistic_number">5</p>
           </div>
         </div>
@@ -151,7 +171,10 @@ const Home = () => {
         <h3></h3>
         <div className="recent-files-list" style={{ maxHeight: '25rem', overflowY: 'auto' }}>
           {isLoading ? (
+            <div className="loading-container">
+            <div className="loading-spinner"></div>
             <p>Loading...</p>
+          </div>
           ) : (
             (() => {
               const combined = [
@@ -164,7 +187,9 @@ const Home = () => {
               return combined.map((item, index) => (
                 <div key={index} className="message-item">
                   {item.mimeType?.split('/')[0] === 'image' ? (
-                    <img src={item.fileLink} alt="file" style={{ width: '100%' }} />
+                    <Image
+                      src={item.fileLink}
+                    />
                   ) : item.mimeType?.split('/')[0] === 'video' ? (
                     <div style={{ display: 'grid', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'auto 1fr', gap: '1rem' }}>
                       <img src={Video} alt="file" style={{width: "50px"}} />
@@ -191,15 +216,34 @@ const Home = () => {
                   
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <small>{formatDate(item.createdAt)}</small>
+                    <div style={{ display: 'flex', }}>
+                    {item.fileId && (
+                      <Button
+                        type="text"
+                        icon={isDownloading ? null : <CloudDownloadOutlined />}
+                        loading={isDownloading}
+                        style={{
+                          marginLeft: '10px',
+                          outline: 'none',
+                          background: 'none',
+                          border: 'none',
+                          fontSize: '1.2rem',
+                          color: '#1890ff',
+                        }}
+                        onClick={() => handleDownload(item.fileId)}
+                    />
+                    )}
                     <Button
                       type="text"
                       danger
                       icon={isDeleting ? null : <DeleteOutlined />}
                       loading={isDeleting} // Hiển thị trạng thái xóa
                       onClick={() => onDelete(item.fileId ,item.id, item.type as 'file' | 'message')} 
-                      style={{ marginLeft: '10px', outline: 'none', background: 'none', border: 'none' , fontSize: '1.5rem', }}
+                      style={{ marginLeft: '10px', outline: 'none', background: 'none', border: 'none' , fontSize: '1.2rem', }}
                     >
                     </Button>
+                    </div>
+                    
                   </ div>
                 </div>
 

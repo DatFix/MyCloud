@@ -93,8 +93,9 @@ body.dark-mode {
   }
 
   .otp-input {
-    background: rgba(251, 255, 0, 0.1);
-    color: rgba(195, 241, 195, 0.8);
+    background: rgba(173, 216, 230, 0.7);
+    color: rgba(15, 97, 124, 0.7);
+    border: 1px solid rgba(9, 66, 85, 0.7);
   }
 
   .ant-progress-text {

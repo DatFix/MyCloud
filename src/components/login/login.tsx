@@ -48,7 +48,10 @@ const LoginForm = () => {
           />
         ))}
       </div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <></>
+      )}
+
     </div>
   );
 };
