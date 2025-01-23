@@ -1,0 +1,124 @@
+.statistic{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.statistic_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 5rem;   
+}
+
+.statistic_card img {
+    width: 30px;
+    height: 30px; 
+}
+
+.card_content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.card_title {
+    font-weight: bold;
+    margin: 0;
+}
+
+.statistic_number {
+    font-size: 1.2em;
+    color: #333; 
+}
+
+.recent-files-list{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    height: 48rem;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+    small{
+        color: #2f2f2f;
+        text-align: right;
+        font-size: 0.7rem;
+    }
+}
+
+.chat-box{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 0;
+    margin: 1rem 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 80% 1fr;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.chat-box input{
+    padding: 1rem  !important;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 1rem 0;
+    outline: none;
+    font-size: 1rem;
+    color: #444;
+}
+
+.recent-files-list {
+    padding: 6rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; 
+  }
+  
+  .message-item {
+    list-style: none;
+    display: inline-block; 
+    max-width: 90%;
+    padding: 0.5rem;
+    background: linear-gradient(to right, #5f90eb, #c2d6eb, #abf0de);
+
+    border-radius: 10px; 
+    word-wrap: break-word; 
+    align-self: flex-end; 
+    flex-direction: column;
+    margin: 0 0 0.5rem 0 ;
+
+    img{
+      
+        border-radius: 10px;
+    }
+  }
+  
+ 
+  .message-item.sent {
+    background-color: #d1e7dd; 
+    align-self: flex-end; 
+  }
+
+  .recent-files-list::-webkit-scrollbar {
+    width: 10px; /* Width of scrollbar */
+    height: 1000%; /* Height of scrollbar */
+  }
+  
+  .recent-files-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+    height: 100%; /* Height of track */
+  }
+  
+  .recent-files-list::-webkit-scrollbar-thumb {
+    background: #5f90eb;
+    border-radius: 4px;
+    min-height: 50px; /* Minimum height of thumb */
+    max-height: 100px; /* Maximum height of thumb */
+  }

@@ -1,0 +1,144 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.ant-switch {
+  position: absolute; /* Đặt vị trí tuyệt đối */
+  top: 20px; /* Khoảng cách từ trên cùng */
+  right: 20px; /* Khoảng cách từ bên phải */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+}
+
+
+.ant-switch:focus {
+  outline: none; 
+}
+
+
+/* styles.css */
+body {
+  background: linear-gradient(135deg, rgba(195, 241, 195, 0.8), rgba(173, 216, 230, 0.8));
+  transition: background 0.3s;
+
+  .otp-input {
+    background: rgba(243, 245, 158, 0.1);
+    color: rgba(7, 94, 7, 0.8);
+  }
+
+  .home-container{
+    h2{
+      text-align: left;
+      font-size: 2rem;
+      padding: 0;
+      margin-top: -2rem;
+    }
+
+    .storage{
+      text-align: left;
+      font-size: 1rem;
+      padding: 0;
+      margin-top: -1.3rem;
+
+    }
+  }
+}
+
+body.dark-mode {
+  background: linear-gradient(135deg, rgba(25, 25, 25, 0.9), rgba(45, 45, 45, 0.9)); /* Gradient cho chế độ tối */
+  
+  .card_title{
+    color: #888;
+  }
+
+  .statistic_number{
+    color: #555;
+  }
+
+  .otp-input {
+    background: rgba(251, 255, 0, 0.1);
+    color: rgba(195, 241, 195, 0.8);
+  }
+
+  .ant-progress-text {
+    color: #fff;
+  }
+
+  .ant-progress-inner {
+    background-color: #f5f5f5; 
+  }
+
+  .home-container{
+    h2{
+      color: #f5f5f5;
+      text-align: left;
+      font-size: 2rem;
+    }
+
+    .storage{
+      color: #f5f5f5;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .recent-files{
+      h3{
+        margin: 1rem 0;
+      }
+    }
+
+
+    .recent-files-list{
+      background-color: #272727;
+
+      small{
+        color: #2f2f2f;
+      }
+    }    
+
+    .chat-box{
+      background-color: #272727;
+    }
+  }
+}
+
+
+
+
