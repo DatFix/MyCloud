@@ -22,7 +22,7 @@ import { Image } from 'antd';
 
 const Home = () => {
   const { upload, loading } = useUploadFile();
-  const { handleSendMessage, isLoading: sendingMessage } = useSendMessage();
+  const { handleSendMessage,  isLoading: sendingMessage} = useSendMessage();
   const { fetchMessage, isLoading, messages } = useFetchMessage();
   const { fetchFilesData, files } = useFetchFiles();
   const [messageContent, setMessageContent] = useState('');
@@ -188,7 +188,8 @@ const Home = () => {
                 <div key={index} className="message-item">
                   {item.mimeType?.split('/')[0] === 'image' ? (
                     <Image
-                      src={item.fileLink}
+                      style={{ width: '25rem', height: 'auto', objectFit: 'cover' }}
+                      src={`${item.fileLink}`}
                     />
                   ) : item.mimeType?.split('/')[0] === 'video' ? (
                     <div style={{ display: 'grid', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'auto 1fr', gap: '1rem' }}>
